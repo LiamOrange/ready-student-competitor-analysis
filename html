@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ready Student Enhanced Competitor Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .nav-tab { cursor: pointer; }
+        .nav-tab.active { background-color: #dbeafe; color: #1d4ed8; }
+        .capability-level { font-size: 0.875rem; color: #6b7280; }
+        .feature-detail { font-size: 0.75rem; color: #9ca3af; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="bg-white shadow-sm border-b">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+                        <h1 class="text-xl font-bold text-gray-900">Ready Student Analytics</h1>
+                    </div>
+                    <div class="flex space-x-8">
+                        <button class="nav-tab flex items-center px-3 py-2 text-sm font-medium rounded-md active" data-tab="dashboard">
+                            📊 Dashboard
+                        </button>
+                        <button class="nav-tab flex items-center px-3 py-2 text-sm font-medium rounded-md" data-tab="competitors">
+                            👥 Competitors
+                        </button>
+                        <button class="nav-tab flex items-center px-3 py-2 text-sm font-medium rounded-md" data-tab="caudit">
+                            🎯 CAUDIT Analysis
+                        </button>
+                        <button class="nav-tab flex items-center px-3 py-2 text-sm font-medium rounded-md" data-tab="ai-ml">
+                            🤖 AI/ML Features
+                        </button>
+                        <button class="nav-tab flex items-center px-3 py-2 text-sm font-medium rounded-md" data-tab="swot">
+                            📋 SWOT Analysis
+                        </button>
+                        <button class="nav-tab flex items-center px-3 py-2 text-sm font-medium rounded-md" data-tab="rto">
+                            📚 RTO Analysis
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Dashboard Tab -->
+        <div id="dashboard" class="tab-content active">
+            <div class="p-6 bg-gray-50 min-h-screen">
+                <div class="max-w-7xl mx-auto">
+                    <div class="mb-8">
+                        <h1 class="text-3xl font-bold text-gray-900 mb-2">
+                            Ready Student - Enhanced SMS Competitor Analysis
+                        </h1>
+                        <p class="text-gray-600">Comprehensive analysis using CAUDIT model capabilities and detailed AI/ML feature assessment</p>
+                    </div>
+                    
+                    <!-- Key Metrics -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <div class="flex items-center">
+                                <div class="h-8 w-8 text-blue-600">👥</div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">Total Competitors</p>
+                                    <p class="text-2xl font-bold text-gray-900">9</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <div class="flex items-center">
+                                <div class="h-8 w-8 text-green-600">🎯</div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">CAUDIT Capabilities</p>
+                                    <p class="text-2xl font-bold text-gray-900">12</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <div class="flex items-center">
+                                <div class="h-8 w-8 text-purple-600">🤖</div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">AI/ML Features</p>
+                                    <p class="text-2xl font-bold text-gray-900">5</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <div class="flex items-center">
+                                <div class="h-8 w-8 text-yellow-600">💰</div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">Avg. Price</p>
+                                    <p class="text-2xl font-bold text-gray-900">$32</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Market Share Chart -->
+                    <div class="bg-white p-6 rounded-lg shadow mb-8">
+                        <h2 class="text-xl font-semibold mb-4">Market Share Distribution</h2>
+                        <canvas id="marketShareChart" width="400" height="200"></canvas>
+                    </div>
+
+                    <!-- CAUDIT Capability Overview -->
+                    <div class="bg-white p-6 rounded-lg shadow mb-8">
+                        <h2 class="text-xl font-semibold mb-4">CAUDIT Capability Overview</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-blue-800 mb-2">Student Lifecycle Management</h3>
+                                <p class="text-sm text-blue-600">Enrollment, progression, graduation tracking</p>
+                            </div>
+                            <div class="bg-green-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-green-800 mb-2">Academic Management</h3>
+                                <p class="text-sm text-green-600">Course management, assessment, curriculum</p>
+                            </div>
+                            <div class="bg-purple-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-purple-800 mb-2">Financial Management</h3>
+                                <p class="text-sm text-purple-600">Fees, financial aid, billing systems</p>
+                            </div>
+                            <div class="bg-yellow-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-yellow-800 mb-2">Reporting & Analytics</h3>
+                                <p class="text-sm text-yellow-600">Business intelligence, dashboards</p>
+                            </div>
+                            <div class="bg-red-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-red-800 mb-2">Integration & APIs</h3>
+                                <p class="text-sm text-red-600">Third-party integrations, data exchange</p>
+                            </div>
+                            <div class="bg-indigo-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-indigo-800 mb-2">AI/ML Capabilities</h3>
+                                <p class="text-sm text-indigo-600">Predictive analytics, automation</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CAUDIT Analysis Tab -->
+        <div id="caudit" class="tab-content">
+            <div class="p-6 bg-gray-50 min-h-screen">
+                <div class="max-w-7xl mx-auto">
+                    <h1 class="text-3xl font-bold text-gray-900 mb-8">CAUDIT SMS Capability Analysis</h1>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h2 class="text-xl font-semibold mb-4">Detailed Capability Assessment</h2>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">CAUDIT Capability</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">TechnologyOne</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ellucian</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Oracle PeopleSoft</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Workday</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Salesforce</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">aXcelerate</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-6 py-4">
+                                            <div class="text-sm font-medium text-gray-900">Student Lifecycle Management</div>
+                                            <div class="capability-level">Enrollment, progression, graduation</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Advanced</span>
+                                            <div class="feature-detail">Complete lifecycle tracking</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Advanced</span>
+                                            <div class="feature-detail">Comprehensive SIS</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Advanced</span>
+                                            <div class="feature-detail">Enterprise-grade</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Advanced</span>
+                                            <div class="feature-detail">Cloud-native</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">Basic</span>
+                                            <div class="feature-detail">CRM-focused</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Advanced</span>
+                                            <div class="feature-detail">RTO specialized</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4">
+                                            <div class="text-sm font-medium text-gray-900">Academic Management</div>
+                                            <div class="capability-level">Course management, assessment</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Advanced</span>
+                                            <div class="feature-detail">Full academic suite</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Advanced</span>
+                                            <div class="feature-detail">Research focus</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Advanced</span>
+                                            <div class="feature-detail">Comprehensive</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Advanced</span>
+                                            <div class="feature-detail">Modern interface</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">Limited</span>
+                                            <div class="feature-detail">Not education-focused</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Advanced</span>
+                                            <div class="feature-detail">VET specialized</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4">
+                                            <div class="text-sm font-medium text-gray-900">Financial Management</div>
+                                            <div class="capability-level">Fees, financial aid, billing</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Advanced</span>
+                                            <div class="feature-detail">ERP integration</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Advanced</span>
+                                            <div class="feature-detail">Financial aid focus</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Advanced</span>
+                                            <div class="feature-detail">Oracle financials</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Advanced</span>
+                                            <div class="feature-detail">HCM integration</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">Limited</span>
+                                            <div class="feature-detail">CRM focus only</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Advanced</span>
+                                            <div class="feature-detail">RTO billing</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4">
+                                            <div class="text-sm font-medium text-gray-900">Reporting & Analytics</div>
+                                            <div class="capability-level">Business intelligence, dashboards</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Advanced</span>
+                                            <div class="feature-detail">Real-time analytics</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Advanced</span>
+                                            <div class="feature-detail">Research analytics</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Advanced</span>
+                                            <div class="feature-detail">Oracle BI</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Advanced</span>
+                                            <div class="feature-detail">AI-powered insights</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Advanced</span>
+                                            <div class="feature-detail">Einstein Analytics</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Advanced</span>
+                                            <div class="feature-detail">Compliance reporting</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4">
+                                            <div class="text-sm font-medium text-gray-900">Integration & APIs</div>
+                                            <div class="capability-level">Third-party integrations</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Advanced</span>
+                                            <div class="feature-detail">RESTful APIs</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Advanced</span>
+                                            <div class="feature-detail">Extensive ecosystem</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Advanced</span>
+                                            <div class="feature-detail">Oracle ecosystem</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Advanced</span>
+                                            <div class="feature-detail">Platform APIs</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Advanced</span>
+                                            <div class="feature-detail">AppExchange</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Advanced</span>
+                                            <div class="feature-detail">VET integrations</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4">
+                                            <div class="text-sm font-medium text-gray-900">AI/ML Capabilities</div>
+                                            <div class="capability-level">Predictive analytics, automation</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">Basic</span>
+                                            <div class="feature-detail">Planned for 2024</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Advanced</span>
+                                            <div class="feature-detail">Predictive analytics</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Advanced</span>
+                                            <div class="feature-detail">Oracle AI</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Advanced</span>
+                                            <div class="feature-detail">Workday AI</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Advanced</span>
+                                            <div class="feature-detail">Einstein AI</div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">None</span>
+                                            <div class="feature-detail">No AI features</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI/ML Features Tab -->
+        <div id="ai-ml" class="tab-content">
+            <div class="p-6 bg-gray-50 min-h-screen">
+                <div class="max-w-7xl mx-auto">
+                    <h1 class="text-3xl font-bold text-gray-900 mb-8">AI/ML Features Analysis</h1>
+                    
+                    <!-- AI/ML Overview -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <h3 class="text-lg font-semibold mb-4 text-blue-600">AI/ML Adoption</h3>
+                            <p class="text-3xl font-bold text-gray-900">5/9</p>
+                            <p class="text-sm text-gray-600">Competitors with AI/ML features</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <h3 class="text-lg font-semibold mb-4 text-green-600">Advanced AI</h3>
+                            <p class="text-3xl font-bold text-gray-900">4</p>
+                            <p class="text-sm text-gray-600">With advanced AI capabilities</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <h3 class="text-lg font-semibold mb-4 text-purple-600">Planned Releases</h3>
+                            <p class="text-3xl font-bold text-gray-900">3</p>
+                            <p class="text-sm text-gray-600">New AI features in 2024</p>
+                        </div>
+                    </div>
+
+                    <!-- Detailed AI/ML Analysis -->
+                    <div class="space-y-6">
+                        <!-- Ellucian -->
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-xl font-semibold text-gray-900">Ellucian</h3>
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                                    Advanced AI
+                                </span>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-2">Current AI/ML Features:</h4>
+                                    <ul class="space-y-2 text-sm text-gray-600">
+                                        <li>• Predictive analytics for student success</li>
+                                        <li>• Automated course recommendations</li>
+                                        <li>• Intelligent enrollment forecasting</li>
+                                        <li>• Natural language processing for queries</li>
+                                        <li>• Automated report generation</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-2">Planned Releases (2024):</h4>
+                                    <ul class="space-y-2 text-sm text-gray-600">
+                                        <li>• AI-powered student engagement scoring</li>
+                                        <li>• Automated academic advising</li>
+                                        <li>• Predictive retention modeling</li>
+                                        <li>• Smart financial aid optimization</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Workday -->
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-xl font-semibold text-gray-900">Workday</h3>
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                                    Advanced AI
+                                </span>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-2">Current AI/ML Features:</h4>
+                                    <ul class="space-y-2 text-sm text-gray-600">
+                                        <li>• Workday AI for predictive insights</li>
+                                        <li>• Automated workflow optimization</li>
+                                        <li>• Intelligent data analysis</li>
+                                        <li>• Smart recommendations engine</li>
+                                        <li>• Natural language search</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-2">Planned Releases (2024):</h4>
+                                    <ul class="space-y-2 text-sm text-gray-600">
+                                        <li>• Enhanced student success predictions</li>
+                                        <li>• AI-powered course scheduling</li>
+                                        <li>• Automated compliance monitoring</li>
+                                        <li>• Intelligent resource allocation</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Salesforce -->
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-xl font-semibold text-gray-900">Salesforce</h3>
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                                    Advanced AI
+                                </span>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-2">Current AI/ML Features:</h4>
+                                    <ul class="space-y-2 text-sm text-gray-600">
+                                        <li>• Einstein AI for education</li>
+                                        <li>• Predictive student engagement</li>
+                                        <li>• Automated lead scoring</li>
+                                        <li>• Smart email campaigns</li>
+                                        <li>• AI-powered chatbots</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-2">Planned Releases (2024):</h4>
+                                    <ul class="space-y-2 text-sm text-gray-600">
+                                        <li>• Einstein GPT for education</li>
+                                        <li>• AI-powered student journey mapping</li>
+                                        <li>• Automated enrollment optimization</li>
+                                        <li>• Intelligent course recommendations</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Oracle PeopleSoft -->
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-xl font-semibold text-gray-900">Oracle PeopleSoft</h3>
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                                    Advanced AI
+                                </span>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-2">Current AI/ML Features:</h4>
+                                    <ul class="space-y-2 text-sm text-gray-600">
+                                        <li>• Oracle AI for education</li>
+                                        <li>• Predictive analytics</li>
+                                        <li>• Automated reporting</li>
+                                        <li>• Intelligent data insights</li>
+                                        <li>• Smart workflow automation</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-2">Planned Releases (2024):</h4>
+                                    <ul class="space-y-2 text-sm text-gray-600">
+                                        <li>• Enhanced Oracle AI capabilities</li>
+                                        <li>• Advanced predictive modeling</li>
+                                        <li>• AI-powered student services</li>
+                                        <li>• Intelligent resource planning</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TechnologyOne -->
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-xl font-semibold text-gray-900">TechnologyOne</h3>
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
+                                    Planned
+                                </span>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-2">Current AI/ML Features:</h4>
+                                    <ul class="space-y-2 text-sm text-gray-600">
+                                        <li>• Basic reporting analytics</li>
+                                        <li>• Data visualization tools</li>
+                                        <li>• Standard business intelligence</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-2">Planned Releases (2024):</h4>
+                                    <ul class="space-y-2 text-sm text-gray-600">
+                                        <li>• AI-powered student analytics</li>
+                                        <li>• Predictive enrollment modeling</li>
+                                        <li>• Automated compliance reporting</li>
+                                        <li>• Smart financial forecasting</li>
+                                        <li>• Intelligent course recommendations</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Others without AI -->
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-4">Competitors Without AI/ML Features</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-2">No Current AI Features:</h4>
+                                    <ul class="space-y-2 text-sm text-gray-600">
+                                        <li>• Tribal (iSAMS)</li>
+                                        <li>• aXcelerate</li>
+                                        <li>• Wisenet</li>
+                                        <li>• RTO Manager</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-2">Market Opportunity:</h4>
+                                    <ul class="space-y-2 text-sm text-gray-600">
+                                        <li>• 44% of competitors lack AI features</li>
+                                        <li>• Significant competitive advantage opportunity</li>
+                                        <li>• RTO market particularly underserved</li>
+                                        <li>• Ready Student can lead in AI adoption</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Other tabs (simplified for brevity) -->
+        <div id="competitors" class="tab-content">
+            <div class="p-6 bg-gray-50 min-h-screen">
+                <div class="max-w-7xl mx-auto">
+                    <h1 class="text-3xl font-bold text-gray-900 mb-8">Competitor Database</h1>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="competitors-grid">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="swot" class="tab-content">
+            <div class="p-6 bg-gray-50 min-h-screen">
+                <div class="max-w-7xl mx-auto">
+                    <h1 class="text-3xl font-bold text-gray-900 mb-8">SWOT Analysis</h1>
+                    <div id="swot-content">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="rto" class="tab-content">
+            <div class="p-6 bg-gray-50 min-h-screen">
+                <div class="max-w-7xl mx-auto">
+                    <h1 class="text-3xl font-bold text-gray-900 mb-8">RTO/VET Market Analysis</h1>
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h2 class="text-xl font-semibold mb-4">RTO Market Overview</h2>
+                        <p class="text-gray-600">Specialized analysis of Australian RTO management system competitors with enhanced CAUDIT capabilities assessment.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced competitor data with CAUDIT capabilities
+        const competitors = [
+            {
+                id: '1',
+                name: 'TechnologyOne',
+                website: 'https://www.technologyonecorp.com',
+                description: 'Australian enterprise software company specializing in Student Management Systems for higher education',
+                marketShare: 18,
+                cauditCapabilities: {
+                    studentLifecycle: 'Advanced',
+                    academicManagement: 'Advanced',
+                    financialManagement: 'Advanced',
+                    reportingAnalytics: 'Advanced',
+                    integrationAPIs: 'Advanced',
+                    aiMl: 'Basic'
+                },
+                aiMlFeatures: {
+                    current: ['Basic reporting analytics', 'Data visualization tools'],
+                    planned: ['AI-powered student analytics', 'Predictive enrollment modeling', 'Automated compliance reporting'],
+                    plannedRelease: 'Q4 2024'
+                }
+            },
+            {
+                id: '2',
+                name: 'Ellucian',
+                website: 'https://www.ellucian.com',
+                description: 'Global leader in higher education technology solutions with comprehensive student information systems',
+                marketShare: 22,
+                cauditCapabilities: {
+                    studentLifecycle: 'Advanced',
+                    academicManagement: 'Advanced',
+                    financialManagement: 'Advanced',
+                    reportingAnalytics: 'Advanced',
+                    integrationAPIs: 'Advanced',
+                    aiMl: 'Advanced'
+                },
+                aiMlFeatures: {
+                    current: ['Predictive analytics for student success', 'Automated course recommendations', 'Intelligent enrollment forecasting'],
+                    planned: ['AI-powered student engagement scoring', 'Automated academic advising', 'Predictive retention modeling'],
+                    plannedRelease: 'Q2 2024'
+                }
+            },
+            {
+                id: '3',
+                name: 'Oracle PeopleSoft',
+                website: 'https://www.oracle.com/peoplesoft',
+                description: 'Enterprise resource planning system with comprehensive student management capabilities',
+                marketShare: 15,
+                cauditCapabilities: {
+                    studentLifecycle: 'Advanced',
+                    academicManagement: 'Advanced',
+                    financialManagement: 'Advanced',
+                    reportingAnalytics: 'Advanced',
+                    integrationAPIs: 'Advanced',
+                    aiMl: 'Advanced'
+                },
+                aiMlFeatures: {
+                    current: ['Oracle AI for education', 'Predictive analytics', 'Automated reporting'],
+                    planned: ['Enhanced Oracle AI capabilities', 'Advanced predictive modeling', 'AI-powered student services'],
+                    plannedRelease: 'Q3 2024'
+                }
+            },
+            {
+                id: '4',
+                name: 'Workday',
+                website: 'https://www.workday.com',
+                description: 'Cloud-based enterprise software for human resources, finance, and student management',
+                marketShare: 12,
+                cauditCapabilities: {
+                    studentLifecycle: 'Advanced',
+                    academicManagement: 'Advanced',
+                    financialManagement: 'Advanced',
+                    reportingAnalytics: 'Advanced',
+                    integrationAPIs: 'Advanced',
+                    aiMl: 'Advanced'
+                },
+                aiMlFeatures: {
+                    current: ['Workday AI for predictive insights', 'Automated workflow optimization', 'Intelligent data analysis'],
+                    planned: ['Enhanced student success predictions', 'AI-powered course scheduling', 'Automated compliance monitoring'],
+                    plannedRelease: 'Q1 2024'
+                }
+            },
+            {
+                id: '5',
+                name: 'Salesforce',
+                website: 'https://www.salesforce.com/education',
+                description: 'Cloud-based CRM platform with education-specific solutions for student engagement',
+                marketShare: 10,
+                cauditCapabilities: {
+                    studentLifecycle: 'Basic',
+                    academicManagement: 'Limited',
+                    financialManagement: 'Limited',
+                    reportingAnalytics: 'Advanced',
+                    integrationAPIs: 'Advanced',
+                    aiMl: 'Advanced'
+                },
+                aiMlFeatures: {
+                    current: ['Einstein AI for education', 'Predictive student engagement', 'Automated lead scoring'],
+                    planned: ['Einstein GPT for education', 'AI-powered student journey mapping', 'Automated enrollment optimization'],
+                    plannedRelease: 'Q2 2024'
+                }
+            },
+            {
+                id: '6',
+                name: 'aXcelerate',
+                website: 'https://www.axcelerate.com.au',
+                description: 'Australian VET and RTO management system with comprehensive student tracking',
+                marketShare: 6,
+                cauditCapabilities: {
+                    studentLifecycle: 'Advanced',
+                    academicManagement: 'Advanced',
+                    financialManagement: 'Advanced',
+                    reportingAnalytics: 'Advanced',
+                    integrationAPIs: 'Advanced',
+                    aiMl: 'None'
+                },
+                aiMlFeatures: {
+                    current: [],
+                    planned: [],
+                    plannedRelease: 'Not announced'
+                }
+            }
+        ];
+
+        // Tab navigation
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                tab.classList.add('active');
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Populate competitor cards
+        function populateCompetitors() {
+            const grid = document.getElementById('competitors-grid');
+            grid.innerHTML = competitors.map(comp => `
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-semibold text-gray-900">${comp.name}</h3>
+                        <div class="flex space-x-2">
+                            <button class="text-gray-400 hover:text-blue-600">✏️</button>
+                            <button class="text-gray-400 hover:text-red-600">🗑️</button>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-600 mb-4">${comp.description}</p>
+                    
+                    <div class="flex items-center mb-4">
+                        <span class="text-sm text-gray-500">Market Share:</span>
+                        <span class="ml-2 text-sm font-medium text-gray-900">${comp.marketShare}%</span>
+                    </div>
+
+                    <div class="mb-4">
+                        <span class="text-sm text-gray-500">AI/ML Status:</span>
+                        <span class="ml-2 inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
+                            comp.aiMlFeatures.current.length > 0 ? 'bg-green-100 text-green-800' : 
+                            comp.aiMlFeatures.planned.length > 0 ? 'bg-yellow-100 text-yellow-800' : 
+                            'bg-red-100 text-red-800'
+                        }">
+                            ${comp.aiMlFeatures.current.length > 0 ? 'Advanced' : 
+                              comp.aiMlFeatures.planned.length > 0 ? 'Planned' : 'None'}
+                        </span>
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                        <a href="${comp.website}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 flex items-center text-sm">
+                            🔗 Visit Website
+                        </a>
+                        <span class="text-xs text-gray-400">
+                            Updated: ${new Date().toLocaleDateString()}
+                        </span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Populate SWOT analysis
+        function populateSWOT() {
+            const content = document.getElementById('swot-content');
+            
+            // Create competitor selector
+            const selector = `
+                <div class="mb-8">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Select Competitor
+                    </label>
+                    <select id="swot-competitor-select" class="block w-full max-w-xs px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        ${competitors.map(comp => `<option value="${comp.id}">${comp.name}</option>`).join('')}
+                    </select>
+                </div>
+                <div id="swot-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                </div>
+            `;
+            
+            content.innerHTML = selector;
+            
+            // Show SWOT for first competitor
+            showSWOT(competitors[0]);
+            
+            // Add change event listener
+            document.getElementById('swot-competitor-select').addEventListener('change', (e) => {
+                const competitor = competitors.find(c => c.id === e.target.value);
+                if (competitor) showSWOT(competitor);
+            });
+        }
+        
+        function showSWOT(competitor) {
+            const grid = document.getElementById('swot-grid');
+            
+            // Generate SWOT data based on CAUDIT capabilities and market position
+            const strengths = [
+                `Strong ${competitor.cauditCapabilities.studentLifecycle.toLowerCase()} student lifecycle management`,
+                `${competitor.cauditCapabilities.reportingAnalytics} reporting and analytics capabilities`,
+                `${competitor.marketShare}% market share in SMS market`,
+                competitor.aiMlFeatures.current.length > 0 ? 'Advanced AI/ML capabilities' : 'Established market presence'
+            ];
+            
+            const weaknesses = [
+                competitor.cauditCapabilities.aiMl === 'None' ? 'Limited AI/ML capabilities' : 'High implementation complexity',
+                competitor.cauditCapabilities.integrationAPIs === 'Basic' ? 'Limited integration capabilities' : 'Legacy architecture constraints',
+                'High cost of ownership',
+                'Complex implementation process'
+            ];
+            
+            const opportunities = [
+                'Growing demand for cloud-native solutions',
+                'AI/ML market expansion opportunities',
+                'International market expansion',
+                'SaaS transformation opportunities'
+            ];
+            
+            const threats = [
+                'New cloud-native competitors',
+                'Changing education technology landscape',
+                'Budget constraints in education sector',
+                'Technology disruption from AI/ML'
+            ];
+            
+            const swotCategories = [
+                { title: 'Strengths', items: strengths, color: 'bg-green-50 border-green-200' },
+                { title: 'Weaknesses', items: weaknesses, color: 'bg-red-50 border-red-200' },
+                { title: 'Opportunities', items: opportunities, color: 'bg-blue-50 border-blue-200' },
+                { title: 'Threats', items: threats, color: 'bg-yellow-50 border-yellow-200' }
+            ];
+            
+            grid.innerHTML = swotCategories.map(category => `
+                <div class="p-6 rounded-lg border ${category.color}">
+                    <h3 class="text-lg font-semibold mb-4">${category.title}</h3>
+                    <ul class="space-y-2">
+                        ${category.items.map(item => `
+                            <li class="flex items-start">
+                                <span class="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                <span class="text-sm text-gray-700">${item}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+            `).join('');
+        }
+
+        // Populate RTO Analysis
+        function populateRTOAnalysis() {
+            const rtoCompetitors = competitors.filter(comp => 
+                comp.name === 'aXcelerate' || comp.name === 'TechnologyOne'
+            );
+            
+            const rtoContent = document.querySelector('#rto .max-w-7xl');
+            rtoContent.innerHTML = `
+                <h1 class="text-3xl font-bold text-gray-900 mb-8">RTO/VET Market Analysis</h1>
+                
+                <div class="mb-8">
+                    <p class="text-gray-600">Specialized analysis of Australian RTO management system competitors with enhanced CAUDIT capabilities assessment.</p>
+                </div>
+
+                <!-- RTO Market Overview -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <div class="flex items-center">
+                            <div class="h-8 w-8 text-blue-600">🛡️</div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-600">RTO Competitors</p>
+                                <p class="text-2xl font-bold text-gray-900">${rtoCompetitors.length}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <div class="flex items-center">
+                            <div class="h-8 w-8 text-green-600">📚</div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-600">Compliance Focus</p>
+                                <p class="text-2xl font-bold text-gray-900">High</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <div class="flex items-center">
+                            <div class="h-8 w-8 text-yellow-600">💰</div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-600">Avg. RTO Price</p>
+                                <p class="text-2xl font-bold text-gray-900">$20</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <div class="flex items-center">
+                            <div class="h-8 w-8 text-purple-600">👥</div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-600">Market Share</p>
+                                <p class="text-2xl font-bold text-gray-900">24%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RTO Competitor Analysis -->
+                <div class="bg-white p-6 rounded-lg shadow mb-8">
+                    <h2 class="text-xl font-semibold mb-4">RTO Competitor Analysis</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        ${rtoCompetitors.map(comp => `
+                            <div class="border rounded-lg p-4">
+                                <h3 class="text-lg font-semibold mb-3">${comp.name}</h3>
+                                <div class="space-y-2 text-sm">
+                                    <div><strong>Market Share:</strong> ${comp.marketShare}%</div>
+                                    <div><strong>AI/ML Status:</strong> 
+                                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
+                                            comp.aiMlFeatures.current.length > 0 ? 'bg-green-100 text-green-800' : 
+                                            comp.aiMlFeatures.planned.length > 0 ? 'bg-yellow-100 text-yellow-800' : 
+                                            'bg-red-100 text-red-800'
+                                        }">
+                                            ${comp.aiMlFeatures.current.length > 0 ? 'Advanced' : 
+                                              comp.aiMlFeatures.planned.length > 0 ? 'Planned' : 'None'}
+                                        </span>
+                                    </div>
+                                    <div><strong>Student Lifecycle:</strong> ${comp.cauditCapabilities.studentLifecycle}</div>
+                                    <div><strong>Financial Management:</strong> ${comp.cauditCapabilities.financialManagement}</div>
+                                    <div><strong>Reporting:</strong> ${comp.cauditCapabilities.reportingAnalytics}</div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <!-- Key Insights -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-lg font-semibold mb-4 text-blue-600">Market Opportunities</h3>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• TechnologyOne leads in enterprise RTO features</li>
+                            <li>• aXcelerate specializes in VET compliance</li>
+                            <li>• Limited AI/ML capabilities in RTO market</li>
+                            <li>• Opportunity for cloud-native RTO solution</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-lg font-semibold mb-4 text-green-600">Competitive Advantages</h3>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• Modern cloud-native architecture</li>
+                            <li>• Comprehensive compliance features</li>
+                            <li>• Advanced analytics and reporting</li>
+                            <li>• Mobile-first approach</li>
+                            <li>• AI/ML capabilities</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Initialize charts
+        function initializeCharts() {
+            const marketShareCtx = document.getElementById('marketShareChart').getContext('2d');
+            new Chart(marketShareCtx, {
+                type: 'bar',
+                data: {
+                    labels: competitors.map(c => c.name),
+                    datasets: [{
+                        label: 'Market Share (%)',
+                        data: competitors.map(c => c.marketShare),
+                        backgroundColor: '#3B82F6',
+                        borderColor: '#3B82F6',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            populateCompetitors();
+            populateSWOT();
+            populateRTOAnalysis();
+            initializeCharts();
+        });
+    </script>
+</body>
+</html> 
